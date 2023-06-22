@@ -3,10 +3,8 @@ package app.mind.tasks;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class TasksService {
@@ -27,14 +25,14 @@ public class TasksService {
         return tasksRepository.save(tasks);
     }
 
-    public Tasks saveDetails(Tasks tasks) {
-        return tasksRepository.save(tasks);
+    public void saveDetails(Tasks tasks) {
+        tasksRepository.save(tasks);
     }
 
     public void deleteTask(Long id) {
         if(!tasksRepository.existsById(id)) {
             throw new IllegalStateException(
-                    "task" + id + "does not exist"
+                    "task " + id + "does not exist"
             );
         }
         tasksRepository.deleteById(id);
