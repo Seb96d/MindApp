@@ -12,23 +12,16 @@ import java.util.Optional;
 @RestController
 @RequestMapping(path = "tasks")
 public class TasksController {
-//"dateCreated": "2023-06-22",
-//        "dateEdit": "2023-06-22",
-//        "content": "conteeent2",
-//        "address": "adresik2"
+
     @Autowired
     private final TasksService tasksService;
 
     @PostMapping("/addTask")
-    public void postDetails(Tasks tasks)
+    public void postNewTask(Tasks tasks)
     {
         tasks.setDateCreated(LocalDate.now().toString());
         tasks.setDateEdit(tasks.getDateCreated());
-         tasksService.saveDetails(tasks);
-    }
-    @PostMapping("/add")
-    public Tasks createNewTask(Tasks tasks) {
-        return tasksService.addNewTasks(tasks);
+        tasksService.saveDetails(tasks);
     }
 
     public TasksController(TasksService tasksService) {
@@ -49,7 +42,7 @@ public class TasksController {
         tasksService.deleteTask(id);
     }
     @PutMapping("{id}")
-    public void updateTask(
+    public void putUpdateTask(
             @PathVariable("id") Long id,
             @RequestParam(required = false) String content) {
         tasksService.updateTask(id, content);
