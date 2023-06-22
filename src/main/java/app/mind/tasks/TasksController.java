@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +22,8 @@ public class TasksController {
     @PostMapping("/addTask")
     public void postDetails(Tasks tasks)
     {
+        tasks.setDateCreated(LocalDate.now().toString());
+        tasks.setDateEdit(tasks.getDateCreated());
          tasksService.saveDetails(tasks);
     }
     @PostMapping("/add")
@@ -45,4 +48,11 @@ public class TasksController {
     public void deleteTask(@PathVariable("id") Long id) {
         tasksService.deleteTask(id);
     }
+    @PutMapping("{id}")
+    public void updateTask(
+            @PathVariable("id") Long id,
+            @RequestParam(required = false) String content) {
+        tasksService.updateTask(id, content);
+    }
+
 }
