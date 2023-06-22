@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TasksService {
@@ -32,9 +33,18 @@ public class TasksService {
     public void deleteTask(Long id) {
         if(!tasksRepository.existsById(id)) {
             throw new IllegalStateException(
-                    "task " + id + "does not exist"
+                    "task " + id + " does not exist"
             );
         }
         tasksRepository.deleteById(id);
+    }
+
+    public Optional<Tasks> getTaskById(Long id) {
+        if(!tasksRepository.existsById(id)) {
+            throw new IllegalStateException(
+                    "task " + id + " does not exist"
+            );
+        }
+        return tasksRepository.findById(id);
     }
 }

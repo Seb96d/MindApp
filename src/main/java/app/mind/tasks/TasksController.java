@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "tasks")
@@ -34,6 +35,10 @@ public class TasksController {
     @GetMapping
     public List<Tasks> getTasks() {
         return tasksService.getTasks();
+    }
+    @GetMapping("{id}")
+    public Optional<Tasks> getTaskById(@PathVariable("id") Long id) {
+        return tasksService.getTaskById(id);
     }
 
     @DeleteMapping("{id}")
