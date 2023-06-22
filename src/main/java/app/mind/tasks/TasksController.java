@@ -8,12 +8,25 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/v1/tasks")
+@RequestMapping(path = "tasks")
 public class TasksController {
-
+//"dateCreated": "2023-06-22",
+//        "dateEdit": "2023-06-22",
+//        "content": "conteeent2",
+//        "address": "adresik2"
+    @Autowired
     private final TasksService tasksService;
 
-    @Autowired
+    @PostMapping("/addTask")
+    public void postDetails(Tasks tasks)
+    {
+         tasksService.saveDetails(tasks);
+    }
+    @PostMapping("/add")
+    public Tasks createNewTask(Tasks tasks) {
+        return tasksService.addNewTasks(tasks);
+    }
+
     public TasksController(TasksService tasksService) {
         this.tasksService = tasksService;
     }
@@ -23,13 +36,8 @@ public class TasksController {
         return tasksService.getTasks();
     }
 
-    @PostMapping
-    public void createNewTask(@RequestBody Tasks tasks) {
-        tasksService.addNewTasks(tasks);
-    }
-
-    @PostMapping
-    public void saveNewTask(Tasks tasks) {
-
+    @DeleteMapping("{id}")
+    public void deleteTask(@PathVariable("id") Long id) {
+        tasksService.deleteTask(id);
     }
 }

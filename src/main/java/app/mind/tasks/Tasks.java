@@ -2,30 +2,37 @@ package app.mind.tasks;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
-
+//import lombok.Data;
 
 
 @Entity
-@Table
+@Table(name = "tasks")
+//@Data
+//@NoArgsConstructor
+//@AllArgsConstructor
 public class Tasks {
     @Id
+    @Column(name = "id")
     @SequenceGenerator(
-        name = "task_sequence",
-        sequenceName =  "task_sequence",
-        allocationSize = 1
+            name = "task_sequence",
+            sequenceName =  "task_sequence",
+            allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
             generator = "task_sequence"
     )
     private Long id;
-    private LocalDate dateCreated;
-    private LocalDate dateEdit;
+    @Column(name = "date_created")
+    private String dateCreated;
+    @Column(name = "date_Edit")
+    private String dateEdit;
+    @Column(name = "content")
     private String content;
+    @Column(name = "address")
     private String address;
 
-    public Tasks(Long id, LocalDate dateCreated, LocalDate dateEdit, String content, String address) {
+    public Tasks(Long id, String dateCreated, String dateEdit, String content, String address) {
         this.id = id;
         this.dateCreated = dateCreated;
         this.dateEdit = dateEdit;
@@ -33,7 +40,7 @@ public class Tasks {
         this.address = address;
     }
 
-    public Tasks(LocalDate dateCreated, LocalDate dateEdit, String content, String address) {
+    public Tasks(String dateCreated, String dateEdit, String content, String address) {
         this.dateCreated = dateCreated;
         this.dateEdit = dateEdit;
         this.content = content;
@@ -52,19 +59,19 @@ public class Tasks {
         this.id = id;
     }
 
-    public LocalDate getDateCreated() {
+    public String getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(LocalDate dateCreated) {
+    public void setDateCreated(String dateCreated) {
         this.dateCreated = dateCreated;
     }
 
-    public LocalDate getDateEdit() {
+    public String getDateEdit() {
         return dateEdit;
     }
 
-    public void setDateEdit(LocalDate dateEdit) {
+    public void setDateEdit(String dateEdit) {
         this.dateEdit = dateEdit;
     }
 
@@ -95,3 +102,5 @@ public class Tasks {
                 '}';
     }
 }
+
+

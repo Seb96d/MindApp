@@ -2,14 +2,11 @@ package app.mind;
 
 
 import app.mind.tasks.Tasks;
-import app.mind.tasks.TasksController;
-import app.mind.tasks.TasksService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.time.LocalDate;
 
 @SpringBootApplication
 @RestController
@@ -22,14 +19,20 @@ public class MindApplication {
 
 	@GetMapping("/hi")
 	public String hi() {
-		String hi = LocalDate.now().toString();
+		String hi = "2023-06-22";
 		return hi;
 	}
-	Tasks todo = new Tasks(
-			LocalDate.now(),
-			LocalDate.now(),
-			"call mechanic",
-			"List 1"
-	);
+	@PostMapping("/todo")
+	public Tasks toDo() {
+		Tasks todo = new Tasks(
+
+				"2023-06-22",
+				"2023-06-22",
+				"call mechanic",
+				"List 1"
+		);
+		return todo;
+	}
+
 
 }
