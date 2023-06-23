@@ -71,4 +71,9 @@ public class TasksService {
             task.setDateEdit(LocalDate.now().toString());
         }
     }
+
+    public long total() {
+        System.out.println("Amount of tasks: ");
+        return tasksRepository.count();
+    }
 }

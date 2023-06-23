@@ -2,6 +2,7 @@ package app.mind.tasks;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -28,10 +29,11 @@ public class TasksController {
         this.tasksService = tasksService;
     }
 
-    @GetMapping
+    @GetMapping("list")
     public List<Tasks> getTasks() {
         return tasksService.getTasks();
     }
+
     @GetMapping("{id}")
     public Optional<Tasks> getTaskById(@PathVariable("id") Long id) {
         return tasksService.getTaskById(id);
@@ -47,5 +49,8 @@ public class TasksController {
             @RequestParam(required = false) String content) {
         tasksService.updateTask(id, content);
     }
+
+
+
 
 }

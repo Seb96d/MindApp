@@ -25,7 +25,7 @@ public class Tasks {
     private Long id;
     @Column(name = "date_created")
     private String dateCreated;
-    @Column(name = "date_Edit")
+    @Column(name = "date_edit")
     private String dateEdit;
     @Column(name = "content")
     private String content;

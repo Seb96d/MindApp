@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"><head>
+    <meta charset="UTF-8">
+    <title>List Tasks</title>
+</head>
+<body>
+  <div>
+    <h2>List Tasks</h2>
+    <hr/>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Content</th>
+          <th>Address</th>
+          <th>date_created</th>
+          <th>date_edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="task: ${tasks}">
+          <td th:text="${task.id}"></td>
+          <td th:text="${task.content}"></td>
+          <td th:text="${task.address}"></td>
+          <td th:text="${task.dateCreated}"></td>
+          <td th:text="${task.dateEdit}"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+
+
+
+</body>
+</html>
