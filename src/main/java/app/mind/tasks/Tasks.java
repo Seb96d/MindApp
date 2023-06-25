@@ -29,22 +29,22 @@ public class Tasks {
     private String dateEdit;
     @Column(name = "content")
     private String content;
-    @Column(name = "address")
-    private String address;
+    @Column(name = "title")
+    private String title;
 
-    public Tasks(Long id, String dateCreated, String dateEdit, String content, String address) {
+    public Tasks(Long id, String dateCreated, String dateEdit, String content, String title) {
         this.id = id;
         this.dateCreated = dateCreated;
         this.dateEdit = dateEdit;
         this.content = content;
-        this.address = address;
+        this.title = title;
     }
 
-    public Tasks(String dateCreated, String dateEdit, String content, String address) {
+    public Tasks(String dateCreated, String dateEdit, String content, String title) {
         this.dateCreated = dateCreated;
         this.dateEdit = dateEdit;
         this.content = content;
-        this.address = address;
+        this.title = title;
     }
 
     public Tasks() {
@@ -83,12 +83,12 @@ public class Tasks {
         this.content = content;
     }
 
-    public String getAddress() {
-        return address;
+    public String getTitle() {
+        return title;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     @Override
@@ -98,7 +98,7 @@ public class Tasks {
                 ", dateCreated=" + dateCreated +
                 ", dateEdit=" + dateEdit +
                 ", content='" + content + '\'' +
-                ", address='" + address + '\'' +
+                ", title='" + title + '\'' +
                 '}';
     }
 }

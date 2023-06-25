@@ -2,13 +2,14 @@ package app.mind.tasks.controllerHTML;
 
 import app.mind.tasks.Tasks;
 import app.mind.tasks.TasksRepository;
-import app.mind.tasks.TasksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -17,10 +18,29 @@ public class HelloWorldController {
     @Autowired
     private TasksRepository tRepo;
     @GetMapping("/showTasks")
-    public ModelAndView hello() {
-        ModelAndView mav = new ModelAndView("list-tasks");
+    public ModelAndView showAll() {
+        ModelAndView mav = new ModelAndView("task-list");
         List<Tasks> list = tRepo.findAll();
         mav.addObject("tasks", list);
         return mav;
     }
+
+    @GetMapping("/addTasks")
+    public ModelAndView createNew() {
+        ModelAndView mav = new ModelAndView("task-add");
+        Tasks task = (new Tasks());
+        task.setDateCreated(LocalDate.now().toString());
+        task.setDateEdit(task.getDateCreated());
+        mav.addObject("task", task);
+        return mav;
+    }
+
+    @PostMapping("saveTask")
+    public String saveTask(@ModelAttribute Tasks task){
+        task.setDateCreated(LocalDate.now().toString());
+        task.setDateEdit(task.getDateCreated());
+        tRepo.save(task);
+        return "redirect:/showTasks";
+    }
+
 }
