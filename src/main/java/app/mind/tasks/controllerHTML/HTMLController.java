@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Controller
-public class HelloWorldController {
+public class HTMLController {
 
     @Autowired
     private TasksRepository tRepo;
