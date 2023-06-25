@@ -4,9 +4,7 @@ import app.mind.tasks.Tasks;
 import app.mind.tasks.TasksRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDate;
@@ -41,6 +39,19 @@ public class HTMLController {
         task.setDateEdit(task.getDateCreated());
         tRepo.save(task);
         return "redirect:/showTasks";
+    }
+
+    @DeleteMapping("deleteTask")
+    public String deleteTask(Tasks task){
+        tRepo.delete(task);
+        return "redirect:/showTasks";
+    }
+    @GetMapping("/showUpdateForm")
+    public ModelAndView showUpdateForm(Long id) {
+        ModelAndView mav = new ModelAndView("task-add");
+        Tasks task = tRepo.findById(id).get();
+        mav.addObject("task",task);
+        return mav;
     }
 
 }

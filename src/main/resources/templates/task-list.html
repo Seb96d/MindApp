@@ -10,6 +10,7 @@
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
+        background-color: (240, 240, 240);
       }
 
       .container {
@@ -22,9 +23,9 @@
       }
 
       .note {
-        background-color: #ffffff;
+        background-color: (233, 233, 233);
         border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
         padding: 20px;
       }
 
@@ -52,20 +53,33 @@
         color: #999999;
         margin-top: 5px;
       }
+      .btn-update {
+        background-color: #0cce0c;
+      }
+      .btn-delete {
+        background-color: #d31111;
+      }
+      .btn-addtask{
+        background-color: #774fc9;
+      }
     </style>
   </head>
 <body>
 <div class="container">
   <h1>Task List</h1>
-  <a th:href="@{/addTasks}" class="btn btn-primary mb-2">Add Task</a>
-  <div th:each="task : ${tasks}">
+  <a th:href="@{/addTasks}" class="btn btn-primary col-8 mb-4">Add Task</a>
+  <tr th:each="task : ${tasks}">
     <div class="note">
-      <h2 th:text="${task.title}"></h2>
+      <h2 th:text="${task.id}+ '. ' + ${task.title}"></h2>
       <p th:text="${task.content}"></p>
       <p class="date-created">Created: <span th:text="${task.dateCreated}"></span></p>
       <p class="date-edited">Last Edited: <span th:text="${task.dateEdit}"></span></p>
+      <td>
+        <a th:href="@{/showUpdateForm(id=${task.id})}" class="btn btn-info">Update Task</a>
+        <a th:href="@{/deleteTask(id=${task.id})}" class="btn btn-info">Delete Task</a>
+      </td>
     </div>
-  </div>
+  </tr>
 </div>
 </body>
 </html>

@@ -13,6 +13,7 @@
       <input th:type="text" th:field="*{title}" placeholder="Title" class="form-control col-4 mb-4">
       <input th:type="text" th:field="*{content}" placeholder="Type your note here..." class="form-control col-4 mb-4">
       <button class="btn btn-primary" type="submit">Save</button>
+      <input type="hidden" th:field="*{id}"/>
     </form>
     <hr/>
     <a th:href="@{/showTasks}">Back to list</a>
