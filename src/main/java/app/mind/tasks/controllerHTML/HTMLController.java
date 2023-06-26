@@ -35,23 +35,25 @@ public class HTMLController {
 
     @PostMapping("saveTask")
     public String saveTask(@ModelAttribute Tasks task){
+
         task.setDateCreated(LocalDate.now().toString());
         task.setDateEdit(task.getDateCreated());
         tRepo.save(task);
         return "redirect:/showTasks";
     }
 
-    @DeleteMapping("deleteTask")
-    public String deleteTask(Tasks task){
-        tRepo.delete(task);
-        return "redirect:/showTasks";
-    }
     @GetMapping("/showUpdateForm")
     public ModelAndView showUpdateForm(Long id) {
         ModelAndView mav = new ModelAndView("task-add");
         Tasks task = tRepo.findById(id).get();
         mav.addObject("task",task);
         return mav;
+    }
+
+    @GetMapping("deleteTask")
+    public String deleteTask(@RequestParam Long id){
+        tRepo.deleteById(id);
+        return "redirect:/showTasks";
     }
 
 }

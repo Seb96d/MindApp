@@ -76,7 +76,7 @@
       <p class="date-edited">Last Edited: <span th:text="${task.dateEdit}"></span></p>
       <td>
         <a th:href="@{/showUpdateForm(id=${task.id})}" class="btn btn-info">Update Task</a>
-        <a th:href="@{/deleteTask(id=${task.id})}" class="btn btn-info">Delete Task</a>
+        <a th:href="@{/deleteTask(id=${task.id})}"  class="btn btn-info ml-2">Delete Task</a>
       </td>
     </div>
   </tr>
