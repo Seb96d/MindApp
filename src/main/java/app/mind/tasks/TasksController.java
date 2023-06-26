@@ -2,7 +2,9 @@ package app.mind.tasks;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 
 import java.time.LocalDate;
@@ -28,10 +30,11 @@ public class TasksController {
         this.tasksService = tasksService;
     }
 
-    @GetMapping
+    @GetMapping("list")
     public List<Tasks> getTasks() {
         return tasksService.getTasks();
     }
+
     @GetMapping("{id}")
     public Optional<Tasks> getTaskById(@PathVariable("id") Long id) {
         return tasksService.getTaskById(id);
@@ -47,5 +50,15 @@ public class TasksController {
             @RequestParam(required = false) String content) {
         tasksService.updateTask(id, content);
     }
+
+//    @GetMapping("/addTaskForm")
+//    public ModelAndView addTaskForm() {
+//        ModelAndView mav = new ModelAndView("add-task-form");
+//        Tasks newTask = new Tasks();
+//        mav.addObject("task",newTask);
+//        return mav;
+//    }
+
+
 
 }
