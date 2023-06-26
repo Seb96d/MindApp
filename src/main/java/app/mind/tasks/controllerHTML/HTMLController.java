@@ -35,7 +35,7 @@ public class HTMLController {
 
     @PostMapping("saveTask")
     public String saveTask(@ModelAttribute Tasks task){
-
+        boolean taskExists = false;
         task.setDateCreated(LocalDate.now().toString());
         task.setDateEdit(task.getDateCreated());
         tRepo.save(task);
